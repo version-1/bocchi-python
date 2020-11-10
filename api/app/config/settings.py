@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware'
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -81,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # 変更
-        'NAME': 'bocchi_development',
-        'HOST': '127.0.0.1',
-        'USER': 'root',
-        'PASSWORD': 'password',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DB_NAME'),
+        'HOST': env('DB_HOST'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
     }
 }
 
@@ -138,18 +138,13 @@ STATIC_URL = '/static/'
 
 #Django REST frameworkの設定
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        #Simple JWTの読み込み
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
-    ],
+    # JWT認証の追加
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_jwt.authentication.JSONWebTokenAuthentication',),
 }
 
-#Simple JWTの設定
-SIMPLE_JWT = {
-    #トークンをJWTに設定
-    'AUTH_HEADER_TYPES': ('JWT',),
-    #トークンの持続時間の設定
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60)
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False,
 }
 
 # CORSの設定
