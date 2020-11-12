@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'api.v1.apps.V1Config',
     'user.apps.UserConfig',
     'tweet.apps.TweetConfig',
+    'schedule.apps.ScheduleConfig',
     'rest_framework'
 ]
 
