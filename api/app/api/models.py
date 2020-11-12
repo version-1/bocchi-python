@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 class Base(models.Model):
@@ -8,4 +9,6 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
+def gen_uuid():
+    return uuid.uuid4().hex
 

@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'api.v1.apps.V1Config',
-    'api.v1.users.apps.UsersConfig',
-    'api.v1.users.twitters.apps.TwittersConfig',
+    'user.apps.UserConfig',
+    'tweet.apps.TweetConfig',
     'rest_framework'
 ]
 

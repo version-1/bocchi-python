@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from api.v1.models import Base
+from api.models import Base
 
 # Create your models here.
 class Twitter(Base):
