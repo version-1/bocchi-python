@@ -20,5 +20,5 @@ class UserList(APIView):
 
 class Twitter(APIView):
     def get(self, request, format=None):
-        serializer = TwitterSerializer(twitter)
+        serializer = TwitterSerializer(request.user.twitter)
         return Response(serializer.data)

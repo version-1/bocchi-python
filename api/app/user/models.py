@@ -58,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.full_name
 
 class Twitter(Base):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     consumer_key = models.CharField(max_length=255)
     consumer_secret_key = models.CharField(max_length=255)
     access_token = models.CharField(max_length=255)
