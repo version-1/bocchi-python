@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from tweet.models import Post, Collection
-from django.contrib.auth.models import User
+from user.models import User
 
 class PostSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)

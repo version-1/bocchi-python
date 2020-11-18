@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import User
 from api.models import Base, gen_uuid
 from tweet.models import Collection, Post
 
