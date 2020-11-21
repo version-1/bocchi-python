@@ -11,7 +11,7 @@ class TweetList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
-        tweets = Tweet.objects.all()
+        tweets = request.user.post_set.all()
         serializer = PostSerializer(tweets, many=True)
         return Response(serializer.data)
 
