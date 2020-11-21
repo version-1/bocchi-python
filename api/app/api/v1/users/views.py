@@ -4,11 +4,9 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from user.models import Twitter
 from user.serializers import UserSerializer, TwitterSerializer
-from user.models import User
+from user.models import Twitter, User
 from tweet.serializers import PostSerializer
-
 
 class UserList(APIView):
     """
@@ -26,7 +24,7 @@ class Twitter(APIView):
 
 class TweetPost(APIView):
     def get(self, request, format=None):
-        tweets = request.user.tweets
+        tweets = request.user.post_set.all()
         serializer = PostSerializer(tweets, many=True)
         return Response(serializer.data)
 
