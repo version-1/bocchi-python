@@ -11,6 +11,7 @@ class Post(Base):
 
 class Collection(Base):
     key = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
 

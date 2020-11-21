@@ -22,16 +22,3 @@ class Twitter(APIView):
         serializer = TwitterSerializer(request.user.twitter)
         return Response(serializer.data)
 
-class TweetPost(APIView):
-    def get(self, request, format=None):
-        tweets = request.user.post_set.all()
-        serializer = PostSerializer(tweets, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        request.data.update({ 'user': request.user.id })
-        serializer = PostSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

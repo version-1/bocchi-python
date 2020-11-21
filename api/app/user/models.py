@@ -23,6 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         },
     )
     email = models.EmailField('email address', blank=True)
+    is_staff = models.BooleanField()
     is_active = models.BooleanField(
         'active',
         default=True,
