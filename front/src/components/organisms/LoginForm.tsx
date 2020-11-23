@@ -21,10 +21,10 @@ const LoginForm = () => {
       <Form
         {...layout}
         name="basic"
-        onFinish={async values => {
+        onFinish={async (values) => {
           const res = await login(values)
           if (res.data) {
-            router.push('/dashboard')
+            router.push(`/dashboard`)
           }
         }}
         initialValues={{

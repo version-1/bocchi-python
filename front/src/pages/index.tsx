@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Row, Col, Spin } from 'antd'
 import Layout from '@/components/tempaltes/Layout'
 import LoginFrom from '@/components/organisms/LoginForm'
-import { fetchUser } from '@/services/api'
+import { fetchUser, withCookie } from '@/services/api'
 import { parseCookies } from 'nookies'
 
 interface Props {
@@ -54,7 +54,7 @@ export async function getServerSideProps(context: any) {
   let res: any
   const cookie = parseCookies(context)
   try {
-    res = await fetchUser(cookie.jwt)
+    res = await fetchUser(withCookie(cookie.jwt))()
   } catch (error) {
     return {
       props: {}, // will be passed to the page component as props
