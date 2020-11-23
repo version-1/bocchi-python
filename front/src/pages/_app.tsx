@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Global, css } from '@emotion/react'
+import { useQuery, QueryCache, ReactQueryCacheProvider } from 'react-query'
 import '@/assets/stylesheets/style.css'
 
 interface Props {
@@ -20,6 +21,8 @@ export const GlobalStyles = (
   />
 )
 
+const queryCache = new QueryCache()
+
 const App: React.FC<Props> = ({ Component, pageProps }) => (
   <>
     <Head>
@@ -27,7 +30,9 @@ const App: React.FC<Props> = ({ Component, pageProps }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     {GlobalStyles}
-    <Component {...pageProps} />
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <Component {...pageProps} />
+    </ReactQueryCacheProvider>
   </>
 )
 

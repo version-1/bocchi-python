@@ -13,8 +13,7 @@ class UserList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
+        serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
 class Twitter(APIView):
