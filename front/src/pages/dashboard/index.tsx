@@ -6,7 +6,7 @@ interface Props {
   user?: any
 }
 
-const Home: React.FC<Props> = ({ user }) => {
+const Dashboard: React.FC<Props> = ({ user }) => {
   if (user) {
     return null
   }
@@ -15,16 +15,29 @@ const Home: React.FC<Props> = ({ user }) => {
       <Row
         align="middle"
         style={{
+          padding: `32px`,
           minHeight: `100vh`,
         }}
       >
-        <Card>dashboard</Card>
+        <Col
+          span={24}
+          style={{
+            minHeight: `100vh`,
+          }}
+        >
+          <Card
+            title="Dashboard"
+            style={{
+              height: `100vh`,
+            }}
+          />
+        </Col>
       </Row>
     </Layout>
   )
 }
 
-export default Home
+export default Dashboard
 
 export async function getServerSideProps(context) {
   return {

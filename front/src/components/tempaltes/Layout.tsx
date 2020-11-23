@@ -1,7 +1,8 @@
 import React from 'react'
 import { Layout } from 'antd'
+import Sidebar from '@/components/tempaltes/Sidebar'
 
-const { Header, Footer, Content, Sider } = Layout
+const { Header, Footer, Content } = Layout
 
 interface Props {
   hasSider?: boolean
@@ -19,7 +20,7 @@ const LayoutComponent: React.FC<Props> = ({ hasSider = true, children }) => {
         Bocchi
       </Header>
       <Layout>
-        {hasSider && <Sider>Sider</Sider>}
+        {hasSider && <Sidebar />}
         <Content>{children}</Content>
       </Layout>
       <Footer />
