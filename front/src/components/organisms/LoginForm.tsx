@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 import { Form, Input, Button, Card } from 'antd'
-import { login, setToken } from '@/services/api'
+import { login } from '@/services/api'
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,16 +14,17 @@ const tailLayout = {
 const LoginForm = () => {
   const [username, setUsername] = useState(``)
   const [password, setPassword] = useState(``)
+  const router = useRouter()
 
   return (
     <Card>
       <Form
         {...layout}
         name="basic"
-        onFinish={async (values) => {
+        onFinish={async values => {
           const res = await login(values)
           if (res.data) {
-            setToken(res.data.token)
+            router.push('/dashboard')
           }
         }}
         initialValues={{

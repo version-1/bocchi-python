@@ -15,7 +15,7 @@ export default async function handler(
     data,
     method: method as Method,
   })
-  console.log(`token`, apiRes.data)
+
   res.statusCode = apiRes.status
   res.setHeader(`Content-Type`, `application/json`)
   setCookie({ res }, `jwt`, apiRes.data.token, {
