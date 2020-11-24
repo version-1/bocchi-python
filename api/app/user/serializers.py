@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from user.models import User
+from user.models import User, Twitter
 
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -12,7 +12,7 @@ class UserSerializer(serializers.Serializer):
         """
         Create and return a new `UserSerializer` instance, given the validated data.
         """
-        return Snippet.objects.create(**validated_data)
+        return User.objects.create(**validated_data)
 
 class TwitterSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -27,4 +27,4 @@ class TwitterSerializer(serializers.Serializer):
         """
         Create and return a new `UserSerializer` instance, given the validated data.
         """
-        return Snippet.objects.create(**validated_data)
+        return Twitter.objects.create(**validated_data)

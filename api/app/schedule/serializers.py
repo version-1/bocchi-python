@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from schedule.models import Schedule
 
 class ScheduleSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -10,4 +11,4 @@ class ScheduleSerializer(serializers.Serializer):
         """
         Create and return a new `UserSerializer` instance, given the validated data.
         """
-        return Snippet.objects.create(**validated_data)
+        return Schedule.objects.create(**validated_data)
