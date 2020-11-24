@@ -32,6 +32,13 @@ export const fetchUser = (client?: any) => {
   }
 }
 
+export const fetchUserTweets = (client?: any) => {
+  return async (): Promise<AxiosResponse<any>> => {
+    const c = client || instance
+    return c.get(`${baseURL}/proxy/users/tweets/`)
+  }
+}
+
 export const withCookie = (token: string) => {
   instance.defaults.headers.jwt = token
   return instance

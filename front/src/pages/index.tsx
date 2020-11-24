@@ -5,6 +5,7 @@ import Layout from '@/components/tempaltes/Layout'
 import LoginFrom from '@/components/organisms/LoginForm'
 import { fetchUser, withCookie } from '@/services/api'
 import { parseCookies } from 'nookies'
+import { NextPageContext } from 'next'
 
 interface Props {
   user?: any
@@ -50,7 +51,7 @@ const Home: React.FC<Props> = ({ user }) => {
 
 export default Home
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: NextPageContext) {
   let res: any
   const cookie = parseCookies(context)
   try {

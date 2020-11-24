@@ -17,7 +17,7 @@ export default async function handler(
   const { body: data, method } = req
   const { path } = req.query
 
-  const url = `${baseUrl}/${path}`
+  const url = `${baseUrl}/${(path as string[]).join(`/`)}/`
   const apiRes = await axios.request({
     url,
     data,
