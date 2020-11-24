@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Global, css } from '@emotion/react'
-import { useQuery, QueryCache, ReactQueryCacheProvider } from 'react-query'
+import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import '@/assets/stylesheets/style.css'
 
 interface Props {

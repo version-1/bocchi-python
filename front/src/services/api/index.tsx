@@ -21,6 +21,10 @@ export const login = async ({
   })
 }
 
+export const logout = async (): Promise<AxiosResponse<void>> => {
+  return instance.delete(`/auth`)
+}
+
 export const fetchUser = (client?: any) => {
   return async (): Promise<AxiosResponse<any>> => {
     const c = client || instance

@@ -1,11 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios, { Method } from 'axios'
-
-const baseUrl = process.env.NEXT_API_URL || `http://localhost:8000/api/v1`
-
-const parseCookie = (cookie: string): any => {
-  return cookie
-}
+import { baseUrl } from '../index'
 
 export default async function handler(
   req: NextApiRequest,

@@ -12,8 +12,6 @@ const tailLayout = {
 }
 
 const LoginForm = () => {
-  const [username, setUsername] = useState(``)
-  const [password, setPassword] = useState(``)
   const router = useRouter()
 
   return (
