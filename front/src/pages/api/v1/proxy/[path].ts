@@ -1,17 +1,19 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios, { Method } from 'axios'
+import nookies from 'nookies'
 import { baseUrl } from '../index'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (!req.headers.jwt) {
+  const cookies = nookies.get({ req })
+  if (!req.headers.jwt && !cookies.jwt) {
     res.statusCode = 401
     res.end()
     return
   }
-  const { jwt } = req.headers
+  const jwt = req.headers.jwt || cookies.jwt
   const { body: data, method } = req
   const { path } = req.query
 

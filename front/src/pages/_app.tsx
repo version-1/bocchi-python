@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import Head from 'next/head'
 import { Global, css } from '@emotion/react'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
@@ -23,17 +23,19 @@ export const GlobalStyles = (
 
 const queryCache = new QueryCache()
 
-const App: React.FC<Props> = ({ Component, pageProps }) => (
-  <>
-    <Head>
-      <title>Bocchi</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    {GlobalStyles}
-    <ReactQueryCacheProvider queryCache={queryCache}>
-      <Component {...pageProps} />
-    </ReactQueryCacheProvider>
-  </>
-)
+const App: React.FC<Props> = ({ Component, pageProps }) => {
+  return (
+    <>
+      <Head>
+        <title>Bocchi</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {GlobalStyles}
+      <ReactQueryCacheProvider queryCache={queryCache}>
+        <Component {...pageProps} />
+      </ReactQueryCacheProvider>
+    </>
+  )
+}
 
 export default App

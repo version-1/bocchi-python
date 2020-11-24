@@ -12,7 +12,6 @@ interface Props {
 
 const Home: React.FC<Props> = ({ user }) => {
   const router = useRouter()
-  console.log(user)
   if (user) {
     if (typeof window !== `undefined`) {
       router.push(`/dashboard`)
