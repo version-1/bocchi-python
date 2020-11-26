@@ -19,6 +19,7 @@ class CollectionSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     key = serializers.CharField(required=False, allow_blank=True, max_length=100)
     name = serializers.CharField(required=False, allow_blank=True, max_length=255)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
 
     def create(self, validated_data):
         """

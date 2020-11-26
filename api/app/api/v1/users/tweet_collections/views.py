@@ -11,8 +11,12 @@ class TweetCollection(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        # TODO
-        return Response({ "message": "ok" })
+        request.data.update({ 'user': request.user.id })
+        serializer = CollectionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, format=None):
         # TODO
