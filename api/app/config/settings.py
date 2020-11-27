@@ -98,6 +98,7 @@ DATABASES = {
         'HOST': env('DB_HOST'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
+        'ATOMIC_REQUESTS': True
     }
 }
 

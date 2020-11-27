@@ -7,8 +7,17 @@ from tweet.models import Collection, Post
 class Schedule(Base):
     uuid = models.UUIDField(default=gen_uuid)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    execution_time = models.PositiveIntegerField()
-    type = models.PositiveIntegerField()
+    execution_time = models.PositiveIntegerField(default=0)
+    status = models.PositiveIntegerField(default=0)
+    type = models.PositiveIntegerField(default=0)
+    collections = models.ManyToManyField(
+        Collection,
+        through="ScheduleTweetCollection"
+    )
+    posts = models.ManyToManyField(
+        Post,
+        through="ScheduleTweetPost"
+    )
 
 class ScheduleTweetCollection(Base):
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
