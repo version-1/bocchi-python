@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '@/components/tempaltes/Layout'
-import { Table, Row, Col, Card } from 'antd'
+import { Table, Button, Row, Col, Card } from 'antd'
 import { fetchUserTweets, withCookie } from '@/services/api'
 import { parseCookies } from 'nookies'
 import { NextPageContext } from 'next'
@@ -34,6 +34,17 @@ const columns = [
     title: 'Updated At',
     dataIndex: 'updatedAt',
     key: 'uuid',
+  },
+  {
+    title: 'Action',
+    render: (content: string, record: any) => (
+      <Row>
+        <Button type="link">Edit</Button>
+        <Button type="link" danger>
+          Delete
+        </Button>
+      </Row>
+    ),
   },
 ]
 
