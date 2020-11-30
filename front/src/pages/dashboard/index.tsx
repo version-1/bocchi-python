@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Layout from '@/components/tempaltes/Layout'
 import { Table, Row, Col, Card } from 'antd'
 import { fetchUserTweets, withCookie } from '@/services/api'
@@ -18,9 +18,9 @@ const columns = [
   {
     title: 'Content',
     dataIndex: 'content',
-    key: 'content',
-    render: (content: string) => (
-      <span>
+    key: 'uuid',
+    render: (content: string, record: any) => (
+      <span key={record.uuid}>
         {content.length > 80 ? `${content.slice(0, 80)} ...` : content}
       </span>
     ),
@@ -28,12 +28,12 @@ const columns = [
   {
     title: 'Created At',
     dataIndex: 'createdAt',
-    key: 'createdAt',
+    key: 'uuid',
   },
   {
     title: 'Updated At',
     dataIndex: 'updatedAt',
-    key: 'updatedAt',
+    key: 'uuid',
   },
 ]
 
@@ -60,7 +60,11 @@ const Dashboard: React.FC<Props> = ({ tweets }) => {
               height: `100vh`,
             }}
           >
-            <Table dataSource={data} columns={columns} />
+            <Table
+              dataSource={data}
+              columns={columns}
+              rowKey={(record: any) => record.uuid}
+            />
           </Card>
         </Col>
       </Row>
