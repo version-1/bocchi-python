@@ -26,6 +26,11 @@ const columns = [
     ),
   },
   {
+    title: 'Collection',
+    dataIndex: 'collection',
+    key: 'uuid',
+  },
+  {
     title: 'Created At',
     dataIndex: 'createdAt',
     key: 'uuid',
@@ -71,6 +76,7 @@ const Dashboard: React.FC<Props> = ({ tweets }) => {
               height: `100vh`,
             }}
           >
+            <Button type="primary">New Tweet</Button>
             <Table
               dataSource={data}
               columns={columns}
