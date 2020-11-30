@@ -11,7 +11,7 @@ interface Props {
 
 const columns = [
   {
-    title: 'Uuid',
+    title: 'ID',
     dataIndex: 'uuid',
     key: 'uuid',
   },
