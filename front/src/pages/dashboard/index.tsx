@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import Layout from '@/components/tempaltes/Layout'
-import { Row, Col, Card } from 'antd'
+import { Table, Row, Col, Card } from 'antd'
 import { fetchUserTweets, withCookie } from '@/services/api'
 import { parseCookies } from 'nookies'
 import { NextPageContext } from 'next'
@@ -9,7 +9,36 @@ interface Props {
   tweets?: any
 }
 
+const columns = [
+  {
+    title: 'Uuid',
+    dataIndex: 'uuid',
+    key: 'uuid',
+  },
+  {
+    title: 'Content',
+    dataIndex: 'content',
+    key: 'content',
+    render: (content: string) => (
+      <span>
+        {content.length > 80 ? `${content.slice(0, 80)} ...` : content}
+      </span>
+    ),
+  },
+  {
+    title: 'Created At',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
+  },
+  {
+    title: 'Updated At',
+    dataIndex: 'updatedAt',
+    key: 'updatedAt',
+  },
+]
+
 const Dashboard: React.FC<Props> = ({ tweets }) => {
+  const [data, setTweets] = useState<any[]>(Object.values(tweets))
   return (
     <Layout>
       <Row
@@ -30,7 +59,9 @@ const Dashboard: React.FC<Props> = ({ tweets }) => {
             style={{
               height: `100vh`,
             }}
-          />
+          >
+            <Table dataSource={data} columns={columns} />
+          </Card>
         </Col>
       </Row>
     </Layout>

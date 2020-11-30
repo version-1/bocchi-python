@@ -34,16 +34,14 @@ const Home: React.FC<Props> = ({ user }) => {
   return (
     <Layout hasSider={false}>
       <Row
-        align="middle"
         style={{
-          minHeight: `100vh`,
+          marginTop: '100px',
+          minHeight: '100vh',
         }}
       >
-        <Col span={8} />
         <Col span={8}>
           <LoginFrom />
         </Col>
-        <Col span={8} />
       </Row>
     </Layout>
   )
@@ -51,7 +49,9 @@ const Home: React.FC<Props> = ({ user }) => {
 
 export default Home
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getServerSideProps(
+  context: NextPageContext,
+): Promise<{ props: { user?: any } }> {
   let res: any
   const cookie = parseCookies(context)
   try {

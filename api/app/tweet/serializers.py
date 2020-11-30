@@ -8,6 +8,8 @@ class PostSerializer(serializers.Serializer):
     content = serializers.CharField(required=False, allow_blank=True)
     status = serializers.CharField(required=False, allow_blank=True, max_length=255)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    created_at = serializers.DateTimeField()
+    updated_at = serializers.DateTimeField()
 
     def create(self, validated_data):
         """
@@ -20,6 +22,8 @@ class CollectionSerializer(serializers.Serializer):
     key = serializers.CharField(required=False, allow_blank=True, max_length=100)
     name = serializers.CharField(required=False, allow_blank=True, max_length=255)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    created_at = serializers.DateTimeField()
+    updated_at = serializers.DateTimeField()
 
     def create(self, validated_data):
         """
