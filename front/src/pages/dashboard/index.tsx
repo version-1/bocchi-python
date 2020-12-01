@@ -69,7 +69,9 @@ const columns = [
     title: 'Action',
     render: (content: string, record: any) => (
       <Row>
-        <Button type="link">Edit</Button>
+        <Button type="link" disabled>
+          Edit
+        </Button>
         <Button type="link" danger>
           Delete
         </Button>
@@ -91,6 +93,8 @@ const Dashboard: React.FC<Props> = ({ collections = [], tweets }) => {
           onFinish={async (values: any) => {
             Modal.hide()
             await createUserTweet({ ...values, status: Number(values.status) })
+            const res = await fetchUserTweets()()
+            setTweets(res.data)
           }}
           initialValues={{
             title: '',

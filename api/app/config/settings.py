@@ -34,9 +34,6 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,6 +48,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'tweet.apps.TweetConfig',
     'schedule.apps.ScheduleConfig',
+    'corsheaders',
     'rest_framework'
 ]
 
@@ -160,6 +158,26 @@ JWT_AUTH = {
 # CORSの設定
 # すべて許可
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 LOGGING = {
     'version': 1,
