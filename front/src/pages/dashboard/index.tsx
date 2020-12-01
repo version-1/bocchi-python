@@ -124,7 +124,7 @@ const Dashboard: React.FC<Props> = ({ collections = [], tweets }) => {
           <Card
             title="Dashboard"
             style={{
-              height: `100vh`,
+              minHeight: `100vh`,
             }}
           >
             <Button type="primary" onClick={onNew}>
