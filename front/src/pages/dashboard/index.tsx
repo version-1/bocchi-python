@@ -85,6 +85,7 @@ const Dashboard: React.FC<Props> = ({ collections = [], tweets }) => {
   const onNew = (): void => {
     Modal.show({
       title: 'New Tweet',
+      width: '80vw',
       component: (
         <TweetForm
           collections={collections}
