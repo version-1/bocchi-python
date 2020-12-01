@@ -1,18 +1,8 @@
 import React, { useState } from 'react'
 import Layout from '@/components/tempaltes/Layout'
 import Modal from '@/components/molecules/Modal'
-import {
-  Table,
-  Button,
-  Form,
-  Input,
-  Tag,
-  Radio,
-  Row,
-  Col,
-  Card,
-  Select,
-} from 'antd'
+import TweetForm from '@/components/organisms/TweetForm'
+import { message, Table, Button, Tag, Row, Col, Card, Select } from 'antd'
 import {
   fetchUserTweets,
   fetchUserCollections,
@@ -21,8 +11,6 @@ import {
 } from '@/services/api'
 import { parseCookies } from 'nookies'
 import { NextPageContext } from 'next'
-
-const { Option } = Select
 
 interface Props {
   tweets?: any
@@ -82,18 +70,18 @@ const columns = [
 
 const Dashboard: React.FC<Props> = ({ collections = [], tweets }) => {
   const [data, setTweets] = useState<any[]>(Object.values(tweets))
-  const [form] = Form.useForm()
 
   const onNew = (): void => {
     Modal.show({
       title: 'New Tweet',
       component: (
-        <Form
-          name="basic"
+        <TweetForm
+          collections={collections}
           onFinish={async (values: any) => {
             Modal.hide()
             await createUserTweet({ ...values, status: Number(values.status) })
             const res = await fetchUserTweets()()
+            message.success('ツイートを追加しました')
             setTweets(res.data)
           }}
           initialValues={{
@@ -102,45 +90,7 @@ const Dashboard: React.FC<Props> = ({ collections = [], tweets }) => {
             status: '0',
             collectionIds: [],
           }}
-        >
-          <Form.Item
-            label="title"
-            name="title"
-            rules={[{ required: true, message: `Please input title` }]}
-          >
-            <Input placeholder="admin" />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="content"
-            rules={[{ required: true, message: `Please input content` }]}
-          >
-            <Input.TextArea placeholder="つぶやきの内容を書く" />
-          </Form.Item>
-          <Form.Item label="Collections" name="collection_ids">
-            <Select mode="multiple" placeholder="Please select">
-              {collections.map((collection: any) => {
-                return (
-                  <Option key={collection.key} value={collection.id}>
-                    {collection.name}
-                  </Option>
-                )
-              })}
-            </Select>
-          </Form.Item>
-          <Form.Item label="Status" name="status">
-            <Radio.Group>
-              <Radio.Button value="0">Draft</Radio.Button>
-              <Radio.Button value="100">Publish</Radio.Button>
-              <Radio.Button value="900">Pending</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
+        />
       ),
     })
   }
