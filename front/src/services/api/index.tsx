@@ -34,6 +34,14 @@ export const createUserTweet = async (data: {
   return instance.post(`/proxy/users/tweets/`, data)
 }
 
+export const deleteUserTweet = async ({
+  uuid,
+}: {
+  uuid: string
+}): Promise<AxiosResponse<void>> => {
+  return instance.delete(`/proxy/users/tweets/${uuid}`)
+}
+
 export const fetchUser = (client?: any) => {
   return async (): Promise<AxiosResponse<any>> => {
     const c = client || instance

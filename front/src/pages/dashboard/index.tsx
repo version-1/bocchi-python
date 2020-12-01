@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import Layout from '@/components/tempaltes/Layout'
 import Modal from '@/components/molecules/Modal'
 import TweetForm from '@/components/organisms/TweetForm'
-import { message, Table, Button, Tag, Row, Col, Card, Select } from 'antd'
+import { message, Table, Button, Tag, Popconfirm, Row, Col, Card } from 'antd'
 import {
   fetchUserTweets,
   fetchUserCollections,
+  deleteUserTweet,
   createUserTweet,
   withCookie,
 } from '@/services/api'
@@ -60,9 +61,19 @@ const columns = [
         <Button type="link" disabled>
           Edit
         </Button>
-        <Button type="link" danger>
-          Delete
-        </Button>
+        <Popconfirm
+          title="Are you sure to delete this task?"
+          onConfirm={async () => {
+            await deleteUserTweet(record)
+            message.success('ツイートを削除しました。')
+          }}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button type="link" danger>
+            Delete
+          </Button>
+        </Popconfirm>
       </Row>
     ),
   },
