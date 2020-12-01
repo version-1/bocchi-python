@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from user.models import User, Twitter
+from api.serializers import Base
 
-class UserSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+class UserSerializer(Base):
     email = serializers.CharField(required=False, allow_blank=True, max_length=100)
     username = serializers.CharField(required=False, allow_blank=True, max_length=100)
     first_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
@@ -14,8 +14,7 @@ class UserSerializer(serializers.Serializer):
         """
         return User.objects.create(**validated_data)
 
-class TwitterSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
+class TwitterSerializer(Base):
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     consumer_key = serializers.CharField(allow_blank=True, max_length=255)
     consumer_secret_key = serializers.CharField(allow_blank=True, max_length=255)

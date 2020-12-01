@@ -36,6 +36,7 @@
     "@emotion/styled": "11.0.0",
     "antd": "4.8.5",
     "axios": "0.21.0",
+    "date-fns": "2.16.1",
     "next": "10.0.1",
     "nookies": "2.5.0",
     "react": "17.0.1",

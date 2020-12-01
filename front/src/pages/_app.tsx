@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import Head from 'next/head'
+import Modal from '@/components/molecules/Modal'
 import { Global, css } from '@emotion/react'
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import '@/assets/stylesheets/style.css'
@@ -34,6 +35,7 @@ const App: React.FC<Props> = ({ Component, pageProps }) => {
       <ReactQueryCacheProvider queryCache={queryCache}>
         <Component {...pageProps} />
       </ReactQueryCacheProvider>
+      <Modal />
     </>
   )
 }
